@@ -6,7 +6,7 @@ use App\Http\Enum\PostStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class PostCreate extends FormRequest
+class PostEdit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,9 @@ class PostCreate extends FormRequest
     public function rules()
     {
         return [
+            'id'=>'required',
             'title'=>'min:3|required',
             'body'=>'required|min:5',
-            'slug'=>'unique:posts,slug',
             'status'=>'required',
         ];
     }

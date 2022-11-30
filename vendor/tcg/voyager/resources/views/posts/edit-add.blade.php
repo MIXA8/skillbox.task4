@@ -66,7 +66,7 @@
 
 @section('content')
     <div class="page-content container-fluid">
-        <form class="form-edit-add" role="form" action="@if($edit){{ route('voyager.posts.update', $dataTypeContent->id) }}@else{{ route('post.create') }}@endif" method="POST" enctype="multipart/form-data">
+        <form class="form-edit-add" role="form" action="@if($edit){{ route('post.update', $dataTypeContent->id) }}@else{{ route('post.store') }}@endif" method="POST" enctype="multipart/form-data">
             <!-- PUT Method if we are editing -->
             @if($edit)
                 {{ method_field("PUT") }}
@@ -101,6 +101,7 @@
                                 '_field_name'  => 'title',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'title')
                             ])
+                            <input type="hidden" name="id"  value="{{ $dataTypeContent->id }}">
                             <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('voyager::generic.title') }}" value="{{ $dataTypeContent->title ?? '' }}">
                         </div>
                     </div>
@@ -210,9 +211,8 @@
                             <div class="form-group">
                                 <label for="status">{{ __('voyager::post.status') }}</label>
                                 <select class="form-control" name="status">
-                                    <option value="PUBLISHED"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
-                                    <option value="DRAFT"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
-                                    <option value="PENDING"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PENDING') selected="selected"@endif>{{ __('voyager::post.status_pending') }}</option>
+                                    <option value="1"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
+                                    <option value="0"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
                                 </select>
                             </div>
                             <div class="form-group">

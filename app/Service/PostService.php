@@ -6,27 +6,25 @@ use TCG\Voyager\Models\Post;
 
 class PostService extends BaseService
 {
-    public function create($request)
+    public function store($request)
     {
         Post::create(
             [
                 'title' => $request->title,
                 'body' => $request->body,
                 'slug' => $request->slug,
-                'status' => $request->status,
+                'featured' => $request->status,
             ]
         );
     }
 
-    public function edit($request)
+    public function update($request)
     {
-        Post::create(
-            [
-                'title' => $request->title,
-                'body' => $request->body,
-                'slug' => $request->slug,
-                'status' => $request->status,
-            ]
-        );
+        $post = Post::find($request->id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->slug = $request->slug;
+        $post->featured = $request->status;
+        $post->save();
     }
 }

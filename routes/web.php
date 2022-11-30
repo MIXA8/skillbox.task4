@@ -25,4 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('post/create',[App\Http\Controllers\Post\PostController::class,'create'])->name('post.create');
+Route::put('post/{id}/update', [App\Http\Controllers\Post\PostController::class, 'update'])->name('post.update');
+Route::post('post/store',[App\Http\Controllers\Post\PostController::class,'store'])->name('post.store');
+Route::get('posts',[App\Http\Controllers\News\NewsController::class,'index'])->name('post.index');
+Route::get('post/{slug}/',[App\Http\Controllers\News\NewsController::class,'application'])->name('post.application');
