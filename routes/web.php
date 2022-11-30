@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::put('post/{id}/update', [App\Http\Controllers\Post\PostController::class, 'update'])->name('post.update');
-Route::post('post/store',[App\Http\Controllers\Post\PostController::class,'store'])->name('post.store');
-Route::get('posts',[App\Http\Controllers\News\NewsController::class,'index'])->name('post.index');
-Route::get('post/{slug}/',[App\Http\Controllers\News\NewsController::class,'application'])->name('post.application');
+Route::put('post/{id}/update', [App\Http\Controllers\Post\PostController::class, 'update'])->name('post.update')->middleware('auth');
+Route::post('post/store',[App\Http\Controllers\Post\PostController::class,'store'])->name('post.store')->middleware('auth');
+Route::get('posts',[App\Http\Controllers\News\NewsController::class,'index'])->name('post.index')->middleware('auth');
+Route::get('post/{slug}/',[App\Http\Controllers\News\NewsController::class,'application'])->name('post.application')->middleware('auth');
