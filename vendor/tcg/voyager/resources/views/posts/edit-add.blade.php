@@ -38,7 +38,7 @@
         }
 
         .panel.is-fullscreen .mce-tinymce {
-            height:100%;
+            height: 100%;
         }
 
         .panel.is-fullscreen .mce-edit-area,
@@ -66,7 +66,9 @@
 
 @section('content')
     <div class="page-content container-fluid">
-        <form class="form-edit-add" role="form" action="@if($edit){{ route('post.update', $dataTypeContent->id) }}@else{{ route('post.store') }}@endif" method="POST" enctype="multipart/form-data">
+        <form class="form-edit-add" role="form"
+              action="@if($edit){{ route('post.update', $dataTypeContent->id) }}@else{{ route('post.store') }}@endif"
+              method="POST" enctype="multipart/form-data">
             <!-- PUT Method if we are editing -->
             @if($edit)
                 {{ method_field("PUT") }}
@@ -93,7 +95,8 @@
                                 <span class="panel-desc"> {{ __('voyager::post.title_sub') }}</span>
                             </h3>
                             <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
+                                   aria-hidden="true"></a>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -101,17 +104,35 @@
                                 '_field_name'  => 'title',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'title')
                             ])
-                            <input type="hidden" name="id"  value="{{ $dataTypeContent->id }}">
-                            <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('voyager::generic.title') }}" value="{{ $dataTypeContent->title ?? '' }}">
+                            <input type="hidden" name="id" value="{{ $dataTypeContent->id }}">
+                            <input type="text" class="form-control" id="title" name="title"
+                                   placeholder="{{ __('voyager::generic.title') }}"
+                                   value="{{ $dataTypeContent->title ?? '' }}">
                         </div>
                     </div>
+
+                    <!-- ### MARKDOWN ### -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Markdown</h3>
+                            <div class="panel-actions">
+                                <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen"
+                                   aria-hidden="true"></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <textarea type="text" class="form-control" id="title" name="markdown"></textarea>
+                        </div>
+                    </div><!-- .panel -->
+
 
                     <!-- ### CONTENT ### -->
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ __('voyager::post.content') }}</h3>
                             <div class="panel-actions">
-                                <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+                                <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen"
+                                   aria-hidden="true"></a>
                             </div>
                         </div>
 
@@ -133,7 +154,8 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
                             <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
+                                   aria-hidden="true"></a>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -141,7 +163,8 @@
                                 '_field_name'  => 'excerpt',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
                             ])
-                            <textarea class="form-control" name="excerpt">{{ $dataTypeContent->excerpt ?? '' }}</textarea>
+                            <textarea class="form-control"
+                                      name="excerpt">{{ $dataTypeContent->excerpt ?? '' }}</textarea>
                         </div>
                     </div>
 
@@ -149,7 +172,8 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ __('voyager::post.additional_fields') }}</h3>
                             <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
+                                   aria-hidden="true"></a>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -166,7 +190,10 @@
                                     @if (isset($row->details->formfields_custom))
                                         @include('voyager::formfields.custom.' . $row->details->formfields_custom)
                                     @else
-                                        <div class="form-group @if($row->type == 'hidden') hidden @endif @if(isset($display_options->width)){{ 'col-md-' . $display_options->width }}@endif" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
+                                        <div
+                                            class="form-group @if($row->type == 'hidden') hidden @endif @if(isset($display_options->width)){{ 'col-md-' . $display_options->width }}@endif" @if(isset($display_options->id))
+                                            {{ "id=$display_options->id" }}
+                                            @endif>
                                             {{ $row->slugify }}
                                             <label for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
                                             @include('voyager::multilingual.input-hidden-bread-edit-add')
@@ -191,9 +218,11 @@
                     <!-- ### DETAILS ### -->
                     <div class="panel panel panel-bordered panel-warning">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-clipboard"></i> {{ __('voyager::post.details') }}</h3>
+                            <h3 class="panel-title"><i class="icon wb-clipboard"></i> {{ __('voyager::post.details') }}
+                            </h3>
                             <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
+                                   aria-hidden="true"></a>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -204,15 +233,17 @@
                                     '_field_trans' => get_field_translations($dataTypeContent, 'slug')
                                 ])
                                 <input type="text" class="form-control" id="slug" name="slug"
-                                    placeholder="slug"
-                                    {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug") !!}
-                                    value="{{ $dataTypeContent->slug ?? '' }}">
+                                       placeholder="slug"
+                                       {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug") !!}
+                                       value="{{ $dataTypeContent->slug ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label for="status">{{ __('voyager::post.status') }}</label>
                                 <select class="form-control" name="status">
-                                    <option value="1"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
-                                    <option value="0"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
+                                    <option value="1"
+                                            @if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
+                                    <option value="0"
+                                            @if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -226,7 +257,11 @@
 
             @section('submit-buttons')
                 <button type="submit" class="btn btn-primary pull-right">
-                     @if($edit){{ __('voyager::post.update') }}@else <i class="icon wb-plus-circle"></i> {{ __('voyager::post.new') }} @endif
+                    @if($edit)
+                        {{ __('voyager::post.update') }}
+                    @else
+                        <i class="icon wb-plus-circle"></i> {{ __('voyager::post.new') }}
+                    @endif
                 </button>
             @stop
             @yield('submit-buttons')
@@ -244,17 +279,22 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
+                            aria-hidden="true">&times;
+                    </button>
+                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}
+                    </h4>
                 </div>
 
                 <div class="modal-body">
-                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
+                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'
+                    </h4>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                    <button type="button" class="btn btn-danger" id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-danger"
+                            id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
                 </div>
             </div>
         </div>
@@ -268,21 +308,21 @@
         var $file;
 
         function deleteHandler(tag, isMulti) {
-          return function() {
-            $file = $(this).siblings(tag);
+            return function () {
+                $file = $(this).siblings(tag);
 
-            params = {
-                slug:   '{{ $dataType->slug }}',
-                filename:  $file.data('file-name'),
-                id:     $file.data('id'),
-                field:  $file.parent().data('field-name'),
-                multi: isMulti,
-                _token: '{{ csrf_token() }}'
-            }
+                params = {
+                    slug: '{{ $dataType->slug }}',
+                    filename: $file.data('file-name'),
+                    id: $file.data('id'),
+                    field: $file.parent().data('field-name'),
+                    multi: isMulti,
+                    _token: '{{ csrf_token() }}'
+                }
 
-            $('.confirm_delete_name').text(params.filename);
-            $('#confirm_delete_modal').modal('show');
-          };
+                $('.confirm_delete_name').text(params.filename);
+                $('#confirm_delete_modal').modal('show');
+            };
         }
 
         $('document').ready(function () {
@@ -300,10 +340,10 @@
             });
 
             @if ($isModelTranslatable)
-                $('.side-body').multilingual({"editing": true});
+            $('.side-body').multilingual({"editing": true});
             @endif
 
-            $('.side-body input[data-slug-origin]').each(function(i, el) {
+            $('.side-body input[data-slug-origin]').each(function (i, el) {
                 $(el).slugify();
             });
 
@@ -312,15 +352,17 @@
             $('.form-group').on('click', '.remove-multi-file', deleteHandler('a', true));
             $('.form-group').on('click', '.remove-single-file', deleteHandler('a', false));
 
-            $('#confirm_delete').on('click', function(){
+            $('#confirm_delete').on('click', function () {
                 $.post('{{ route('voyager.'.$dataType->slug.'.media.remove') }}', params, function (response) {
-                    if ( response
+                    if (response
                         && response.data
                         && response.data.status
-                        && response.data.status == 200 ) {
+                        && response.data.status == 200) {
 
                         toastr.success(response.data.message);
-                        $file.parent().fadeOut(300, function() { $(this).remove(); })
+                        $file.parent().fadeOut(300, function () {
+                            $(this).remove();
+                        })
                     } else {
                         toastr.error("Error removing file.");
                     }

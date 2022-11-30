@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '60ca38730d31226f3a668701f160a4f3b6ae7989',
+        'reference' => 'd5701676d7fbb40394a37b8eac351d035a8fad1f',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -433,7 +433,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '60ca38730d31226f3a668701f160a4f3b6ae7989',
+            'reference' => 'd5701676d7fbb40394a37b8eac351d035a8fad1f',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -515,6 +515,15 @@
             'install_path' => __DIR__ . '/../league/flysystem',
             'aliases' => array(),
             'reference' => 'a7790f3dd1b27af81d380e6b2afa77c16ab7e181',
+            'dev_requirement' => false,
+        ),
+        'league/html-to-markdown' => array(
+            'pretty_version' => '5.1.0',
+            'version' => '5.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../league/html-to-markdown',
+            'aliases' => array(),
+            'reference' => 'e0fc8cf07bdabbcd3765341ecb50c34c271d64e1',
             'dev_requirement' => false,
         ),
         'league/mime-type-detection' => array(
